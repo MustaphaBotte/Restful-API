@@ -16,7 +16,7 @@ Throughout the course, practical examples are used to demonstrate how to build a
 
 Additionally, the course introduces handling files such as image uploads and retrieval, making it closer to real-world backend development scenarios.
 
-By the end of this course, I will be able to design, build, and understand RESTful APIs, and see how they are used to connect web applications, mobile apps, and backend systems.
+By the end of this course, You will be able to design, build, and understand RESTful APIs, and see how they are used to connect web applications, mobile apps, and backend systems.
 
 ---
 
