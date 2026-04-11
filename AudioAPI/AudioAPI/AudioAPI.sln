@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioAPI", "AudioAPI.csproj", "{6D42A409-2D50-4FD0-92E6-997F3507824C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D42A409-2D50-4FD0-92E6-997F3507824C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D42A409-2D50-4FD0-92E6-997F3507824C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D42A409-2D50-4FD0-92E6-997F3507824C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D42A409-2D50-4FD0-92E6-997F3507824C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {326C6B23-C9FD-4777-9E55-EC6C933A942A}
+	EndGlobalSection
+EndGlobal
