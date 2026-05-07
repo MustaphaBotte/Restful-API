@@ -120,6 +120,28 @@ namespace CarsApi.DataAccess
                    
         }
 
+        public static async Task<bool> Delete(int Id)
+        {
+            const string Query = @"delete from VehicleDetails where Id = @id";
+
+            using (SqlConnection connection = new SqlConnection(connectionString: _ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(Query, connection))
+                {
+                    command.Parameters.AddWithValue("id", Id);
+                    await connection.OpenAsync();
+                    var result = await command.ExecuteNonQueryAsync();
+
+                    if (result is int affectedRows)
+                        return affectedRows>0;
+
+                    else
+                        throw new Exception("An Error Occured while deleting the car");
+                }
+
+            }
+
+        }
 
     }
 }

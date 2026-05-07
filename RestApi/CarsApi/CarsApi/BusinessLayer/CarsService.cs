@@ -38,5 +38,17 @@ namespace CarsApi.BusinessLayer
                 throw new Exception("An error occurred while processing your request.");
             }
         }
+
+        public static async Task<bool> Delete(int Id)
+        {
+            try
+            {
+                return await DataAccess.CarRepository.Delete(Id);
+            }
+            catch (Exception)
+            {
+                throw new Exception("An error occurred while processing your request.");
+            }
+        }
     }
 }
