@@ -79,7 +79,10 @@ namespace CarsApi.Controller
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(Car.MakeName) || string.IsNullOrWhiteSpace(Car.VehicleName) || Car.Year > DateTime.Now.Year + 1 || Car.NumDoors < 0)
+                if (string.IsNullOrWhiteSpace(Car.MakeName) 
+                    || string.IsNullOrWhiteSpace(Car.VehicleName)
+                    || Car.Year > DateTime.Now.Year + 1 || Car.Year <= 0
+                    || Car.NumDoors < 0)
                 {
                     return BadRequest("Invalid Car Data.");
                 }
@@ -120,6 +123,43 @@ namespace CarsApi.Controller
             }
             catch (Exception ex) {
               return  Problem(ex.Message);
+            }
+
+        }
+
+
+        [HttpPut(Name = "UpdateCar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteCar(ClsCar updatedCar)
+        {
+            if (updatedCar == null 
+                || updatedCar.Id<=0
+                || string.IsNullOrWhiteSpace(updatedCar.MakeName) 
+                || string.IsNullOrWhiteSpace(updatedCar.VehicleName) 
+                || updatedCar.Year > DateTime.Now.Year + 1 || updatedCar.Year<=0
+                || updatedCar.NumDoors < 0) { 
+           
+                return BadRequest($"invalid data was sent");
+            }
+            try
+            {
+                int Id = updatedCar.Id;
+
+                if (await BusinessLayer.CarsService.GetCarById(Id) == null)
+                {
+                    return NotFound($"Car with Id {Id} Not Found!");
+                }
+
+                // simulate the update
+                return Ok(new { message = $"Car with Id {Id} updated successfully", data = updatedCar });
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
             }
 
         }
