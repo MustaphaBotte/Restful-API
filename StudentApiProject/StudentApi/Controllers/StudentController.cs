@@ -31,6 +31,7 @@ namespace StudentApi.Controllers
 
 
 
+
         [HttpGet("passed", Name = "GetPassedStudents")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -50,6 +51,7 @@ namespace StudentApi.Controllers
                 return Problem(ex.Message);
             }
         }
+
 
 
         [HttpGet("AverageGrade", Name = "GetAverageGrade")]
@@ -74,11 +76,12 @@ namespace StudentApi.Controllers
         }
 
 
+
+
         [HttpGet("{id}", Name = "GetStudentById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
         public async Task<ActionResult<StudentDTO?>> GetStudentByIdAsync(uint id)
         {
             try
@@ -90,6 +93,33 @@ namespace StudentApi.Controllers
                 var StudentDTO = student.StudentDTO;
 
                 return Ok(new { message = "success", student = StudentDTO });
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+        [HttpPost("create", Name = "AddNewStudent")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<StudentDTO?>> AddNewStudent(StudentDTO UserInfo)
+        {
+            if(string.IsNullOrEmpty(UserInfo.Name) || UserInfo.Grade<0 || UserInfo.Grade>100 || UserInfo.Age <= 0)
+            {
+                return Problem($"The following fields : name , age and grade must contain a valid values ");
+            }
+            try
+            {
+                var NewStudent = new Student(UserInfo);
+                if (await NewStudent.Save())
+                {
+                    var student = NewStudent.StudentDTO;
+                    return CreatedAtAction($"GetStudentById", 
+                        routeValues:new { id = NewStudent.ID },
+                        value : new { message = $"user created successfully with id {NewStudent.ID}",student});
+                }
+                return Problem("Failed to save the student please try again.");
             }
             catch (Exception ex)
             {
