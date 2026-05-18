@@ -257,12 +257,12 @@ After completing this course, you will be able to:
 
 # 📊 Progress Tracker
 
-- [ ] Introduction
-- [ ] Win32 APIs
-- [ ] Web APIs
-- [ ] RESTful API
-- [ ] Setup & First API
-- [ ] CRUD Project
-- [ ] DTO
-- [ ] 3-Tier Architecture
-- [ ] File Handling
+- [x] Introduction
+- [x] Win32 APIs
+- [x] Web APIs
+- [x] RESTful API
+- [x] Setup & First API
+- [x] CRUD Project
+- [x] DTO
+- [x] 3-Tier Architecture
+- [x] File Handling
